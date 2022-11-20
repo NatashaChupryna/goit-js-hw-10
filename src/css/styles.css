@@ -18,3 +18,10 @@ body {
   max-width: 320px;
   margin-bottom: 16px;
 }
+
+.off_name{
+  display: inline-block;
+}
+.country-list{
+  list-style: none;
+}
