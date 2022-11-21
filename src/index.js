@@ -14,27 +14,21 @@ function onSearch(event) {
   const searchingCountry = event.target.value.trim();
 
   if (searchingCountry === '') {
-    div.innerHTML = '';
-    list.innerHTML = '';
-    Notiflix.Notify.info('Please, enter country name');
     return;
-  }
-
+  };
   fetchCountries(searchingCountry).then(data => {
     if (data.length > 10) {
-      //  div.innerHTML = '';
-      //  list.innerHTML = '';
       return Notiflix.Notify.info(
         'Too many matches found. Please enter a more specific name.'
       );
     } else if (data.length === 1) {
-      list.innerHTML = '';
+      // list.innerHTML = '';
       div.innerHTML = cardMarkUp(data);
-      // list.innerHTML = listMarkUp(data);
+
     } else {
-      div.innerHTML = '';
+      // div.innerHTML = '';
       list.innerHTML = listMarkUp(data);
-      // div.innerHTML = cardMarkUp(data);
+
     }
   });
 }
