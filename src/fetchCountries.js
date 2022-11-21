@@ -1,3 +1,5 @@
+import Notiflix from 'notiflix';
+
 const BASE_URL = 'https://restcountries.com/v3.1/name/';
 export function fetchCountries(name) {
   return fetch(
@@ -9,5 +11,7 @@ export function fetchCountries(name) {
       }
       return response.json();
     })
-    .catch(error => console.log(error));
+    .catch(error =>
+      Notiflix.Notify.failure('"Oops, there is no country with that name"')
+    );
 }

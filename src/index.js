@@ -20,61 +20,42 @@ function onSearch(event) {
   }
 
   fetchCountries(searchingCountry).then(data => {
-    console.log(data);
-
-    // if (searchingCountry >= 10) {
-    //   Notiflix.Notify.info(
-    //     'Too many matches found. Please enter a more specific name.'
-    //   );
-    // }
-    // if (searchingCountry > 2 && searchingCountry < 10) {
-    //   listMarkUp(data);
-    // }
-    if (searchingCountry === 1) {
-     return  cardMarkUp(data)
+    div.innerHTML = '';
+    list.innerHTML = '';
+    
+    if (searchingCountry.length > 10) {
+     return Notiflix.Notify.info(
+        'Too many matches found. Please enter a more specific name.'
+      );
+    } else if (searchingCountry.length > 2 && searchingCountry.length < 10) {
+      div.innerHTML = cardMarkUp(data);
+      // list.innerHTML = listMarkUp(data);
+    } else  {
+      list.innerHTML = listMarkUp(data);
+      // div.innerHTML = cardMarkUp(data);
     };
-    return;
   });
 }
 
 function cardMarkUp(array) {
-  const markUp = array
+  return array
     .map(
       item => `<div class="country_card">
         <img class="flag" src="${item.flags.svg}" alt="" width="60" height="30">
-        <h2 class="off_name">${item.altSpellings}</h2>
+        <h2 class="off_name">${item.name.official}</h2>
         <p>Capital : ${item.capital}</p>
         <p>Population : ${item.population}</p>
         <p>Languages : ${Object.values(item.languages)}</p></div>`
-    )
-    .join('');
+      )
+    .join('')
+};
 
-  div.innerHTML = markUp;
-  console.log(markUp);
-}
-cardMarkUp([
-  {
-    flags: {
-      png: 'https://flagcdn.com/w320/ua.png',
-      svg: 'https://flagcdn.com/ua.svg',
-    },
-    capital: ['Kyiv'],
-    altSpellings: ['UA', 'Ukrayina'],
-    languages: {
-      ukr: 'Ukrainian',
-    },
-    population: 44134693,
-  },
-]);
 
 function listMarkUp(array) {
-  const newMarkUp = array
-    .map(
+  return array.map(
       item => `<li>
         <img class="flag" src="${item.flags.svg}" alt="" width="60" height="30">
-        <h2 class="off_name">${item.altSpellings}</h2></li>`
+        <h2 class="off_name">${item.name.official}</h2></li>`
     )
     .join('');
-
-  list.innerHTML = newMarkUp;
 }
