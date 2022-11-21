@@ -22,11 +22,11 @@ function onSearch(event) {
         'Too many matches found. Please enter a more specific name.'
       );
     } else if (data.length === 1) {
-      // list.innerHTML = '';
+      list.innerHTML = '';
       div.innerHTML = cardMarkUp(data);
 
     } else {
-      // div.innerHTML = '';
+      div.innerHTML = '';
       list.innerHTML = listMarkUp(data);
 
     }
