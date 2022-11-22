@@ -17,18 +17,17 @@ function onSearch(event) {
     return;
   };
   fetchCountries(searchingCountry).then(data => {
-    if (data.length > 10) {
-      return Notiflix.Notify.info(
+    console.log(data);
+    if (data.length >= 10) { 
+      Notiflix.Notify.info(
         'Too many matches found. Please enter a more specific name.'
       );
     } else if (data.length === 1) {
       list.innerHTML = '';
       div.innerHTML = cardMarkUp(data);
-
     } else {
       div.innerHTML = '';
       list.innerHTML = listMarkUp(data);
-
     }
   });
 }
