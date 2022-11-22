@@ -29,7 +29,7 @@ function onSearch(event) {
       div.innerHTML = '';
       list.innerHTML = listMarkUp(data);
     }
-    console.log(data)
+    // console.log(data)
   });
 }
 
