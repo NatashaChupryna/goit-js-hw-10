@@ -17,7 +17,7 @@ function onSearch(event) {
     return;
   };
   fetchCountries(searchingCountry).then(data => {
-    console.log(data);
+
     if (data.length >= 10) { 
       Notiflix.Notify.info(
         'Too many matches found. Please enter a more specific name.'
@@ -29,6 +29,7 @@ function onSearch(event) {
       div.innerHTML = '';
       list.innerHTML = listMarkUp(data);
     }
+    console.log(data)
   });
 }
 
