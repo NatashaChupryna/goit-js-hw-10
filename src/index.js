@@ -16,21 +16,24 @@ function onSearch(event) {
   if (searchingCountry === '') {
     return;
   };
-  fetchCountries(searchingCountry).then(data => {
-
-    if (data.length >= 10) { 
-      Notiflix.Notify.info(
-        'Too many matches found. Please enter a more specific name.'
-      );
-    } else if (data.length === 1) {
-      list.innerHTML = '';
-      div.innerHTML = cardMarkUp(data);
-    } else {
-      div.innerHTML = '';
-      list.innerHTML = listMarkUp(data);
-    }
-    // console.log(data)
-  });
+  fetchCountries(searchingCountry)
+    .then(data => {
+      if (data.length >= 10) {
+        Notiflix.Notify.info(
+          'Too many matches found. Please enter a more specific name.'
+        );
+      } else if (data.length === 1) {
+        list.innerHTML = '';
+        div.innerHTML = cardMarkUp(data);
+      } else {
+        div.innerHTML = '';
+        list.innerHTML = listMarkUp(data);
+      }
+      return data;
+    })
+    .catch(error =>
+      Notiflix.Notify.failure('"Oops, there is no country with that name"')
+    );
 }
 
 function cardMarkUp(array) {
